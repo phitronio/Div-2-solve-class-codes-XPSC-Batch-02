@@ -15,8 +15,28 @@ typedef pair<int,int> pii;
 
 void TEST_CASES()
 {
-
+    int n;
+    cin>>n;
+    vector<int>a;
+    for(int i=1;i<=n;i++)
+        a.push_back(i);
+    int ans = 0;
+    do{
+        set<int>st;
+        for(int i=0;i<n;i++)
+        {
+            st.insert(__gcd(a[i] , a[(i+1)%n]));
+        }
+        ans = max(ans , (int)st.size());
+    }while(next_permutation(a.begin(),a.end()));
+    cout<<ans<<"\n";
 }
+
+
+
+
+/*
+*/
 
 int32_t main()
 {
