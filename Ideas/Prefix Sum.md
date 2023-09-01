@@ -1,7 +1,6 @@
-//write a section in prefix sum
 # Prefix Sum
 ## 1D Prefix Sum
-Suppose we have an array $A$ of length $n$, and we want to compute the prefix sum of $A$. We can define a new array $B$ of length $n+1$, where $B[i] = \sum_{j=0}^{i} A[j]$ for $i \in [0, n-1]$. Then, $B[i]$ is the prefix sum of $A$ up to index $i$. We can compute $B$ in $O(n)$ time by the following algorithm:
+Suppose we have an array $A$ of length $n$, and we want to compute the prefix sum of $A$. We can define a new array $B$ of length $n$, where $B[i] = \sum_{j=0}^{i} A[j]$ for $i \in [0, n-1]$. Then, $B[i]$ is the prefix sum of $A$ up to index $i$. We can compute $B$ in $O(n)$ time by the following algorithm:
 ```
 B[0] = A[0]
 for i = 1 to n-1:

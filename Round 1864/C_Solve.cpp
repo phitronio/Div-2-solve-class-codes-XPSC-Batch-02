@@ -14,7 +14,7 @@ typedef pair<int,int> pii;
 void TEST_CASES()
 {
     int x;
-    cin>>x;
+    cin>>x; //14
     vector<int>ans;
 
     int now = 1;
@@ -23,15 +23,18 @@ void TEST_CASES()
         ans.push_back(now);
         now*=2;
     }
+    // ans = 1, 2, 4, 8
 
-    if(ans.back()!=now)
+    if(ans.back()!=x)
     {
-        int diff = x - ans.back();
+        int diff = x - ans.back(); //14 - 8 = 6 = 4 + 2
         for(int i=30;i>=0;i--)
         {
-            if(diff&(1<<i))
+            if(diff&(1<<i)) // diff = 6 =        110
+                            // (1<<2) = 2^2 = 4= 100
+                            //                   100
             {
-                ans.push_back(ans.back() + (1<<i));
+                ans.push_back(ans.back() + (1<<i)); // 1,2,4,8,12,14
             }
         }
     }

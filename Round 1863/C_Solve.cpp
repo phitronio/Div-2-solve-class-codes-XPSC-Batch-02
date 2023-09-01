@@ -15,7 +15,7 @@ void TEST_CASES()
 {
     int n,k;
     cin>>n>>k;
-    k%=(n+1);
+    k%=(n+1); // k [0 .. n]
     vector<int>a(n);
     vector<bool>vis(n+1);
     for(int i=0; i<n; i++)
@@ -29,26 +29,24 @@ void TEST_CASES()
         if(vis[i]==0)
             nai = i;
 
-    deque<int>dq(a.begin(),a.end());
-    vector<int>all;
+    deque<int> dq(a.begin(),a.end());
 
-    for(int i=0; i<=n; i++)
+    for(int i=0; i<k; i++)
     {
-        all.push_back(dq.front());
+        //dq = [1,2,3,4,5]
+        // nai = 0
+
         int val = nai;
+        // dq = [0,1,2,3,4,5]
+        dq.push_front(val); // O(1)
+        // nai = 5
         nai = dq.back();
+        // dq = [0,1,2,3,4]
         dq.pop_back();
-        dq.push_front(val);
     }
 
-    int idx = k;
-    for(int i=0; i<n; i++)
-    {
-        cout<<all[idx]<<" ";
-        idx--;
-        if(idx<0)
-            idx = all.size()-1;
-    }
+    for(int i=0;i<dq.size();i++)
+        cout<<dq[i]<<" ";
     cout<<"\n";
 }
 

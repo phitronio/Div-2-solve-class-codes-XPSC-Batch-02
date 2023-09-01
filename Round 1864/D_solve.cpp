@@ -36,6 +36,8 @@ void TEST_CASES()
     int ans = 0;
     for(int i=0; i<n; i++)
     {
+        // currently in row i
+        // taking the prefix sum
         for(int j=0; j<n; j++)
         {
             cur[i][j] = d1[i][j] + d2[i][j] + (j-1>=0?cur[i][j-1]:0);
@@ -43,14 +45,15 @@ void TEST_CASES()
         for(int j=0; j<n; j++)
         {
             char eta = s[i][j];
-            if(cur[i][j]%2)
+            if(cur[i][j]%2) // this character is flipped
             {
                 eta = ((eta-'0')^1) + '0';
             }
             if(eta == '1')
             {
                 ans++;
-                d1[i][j]++;
+                d1[i][j]++; //   +1 -1
+                            // 1    -1
                 if(j+1<n)
                     d2[i][j+1]--;
             }
@@ -60,13 +63,16 @@ void TEST_CASES()
         {
             if(i+1 >= n)
                 break;
-
+                                        //          i,j
+                                        // i+1, j-1
+                                        // down i+1 j
             if(j-1>=0)
                 d1[i+1][j-1] += d1[i][j];
             else
                 d1[i+1][j] += d1[i][j];
 
-            if(j+1<n)
+            if(j+1<n)                   // i,j
+                                        //     i+1 j+1
                 d2[i+1][j+1] += d2[i][j];
         }
     }
