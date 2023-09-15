@@ -39,10 +39,12 @@ void TEST_CASES()
         cin>>points[i].first>>points[i].second;
     }
 
+    // Case 1 : Dist (a -> b)
     ll ans = getDist(points[a] , points[b]);
 
     if(k)
     {
+        // Case 2: a -> special point1 -> special point2 -> b
         ans = min(ans , getMinDist(points[a]) + getMinDist(points[b]));
     }
 

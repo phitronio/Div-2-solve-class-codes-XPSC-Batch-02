@@ -20,11 +20,13 @@ void TEST_CASES()
         cin>>a[i];
         sum += a[i];
     }
+    // observation 1 -> is avg a fraction
     if(sum%n)
     {
         cout<<"No\n";
         return;
     }
+
     ll avg = sum/n;
 
     vector<int>cnt(35,0);
@@ -32,21 +34,26 @@ void TEST_CASES()
     for(int i=0; i<n; i++)
     {
         ll baki = a[i] - avg;
+
+        // 2^x - 2^y = baki
         if(baki==0)
             continue;
+        // at-most 1 {x,y} pair possible
 
-        int add = -1;
-        int rem = -1;
+        int add = -1; // 2^add is coming to person i
+        int rem = -1; // 2^rem is going from person i
         for(int y=0; y<=30; y++)
         {
-            ll k = baki + (1ll << y);
-            int on = __builtin_ctzll(k);
+            ll k = baki + (1ll << y); // k = 2^x
             if(k>0 && __builtin_popcountll(k)==1)
             {
+                int on = __builtin_ctzll(k); // 00101000 -> 3
                 add = y;
                 rem = on;
+                break;
             }
         }
+        // no pair found
         if(add==-1)
         {
             cout<<"No\n";

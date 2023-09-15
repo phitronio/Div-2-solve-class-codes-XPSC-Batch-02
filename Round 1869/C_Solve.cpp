@@ -10,11 +10,16 @@ typedef long double ld;
 #endif
 typedef pair<int,int> pii;
 
-int mex(set<int>&st)
+int mex(set<int>&st) // {0,1,2,4,5} // 0 -> exist
+                                    // 1 -> exist
+                                    // 2 -> exist
+                                    // 3 -> x
+                    // {0,1,2,3,4,5,6} -> 7
+                    // nlogn
 {
-    for(int i=0;;i++)
+    for(int i=0;;i++) //o(n)
     {
-        if(st.find(i)==st.end())
+        if(st.find(i)==st.end()) //O(logn)
             return i;
     }
 }
@@ -53,10 +58,11 @@ void TEST_CASES()
     vector<vector<int> >a(n,vector<int>(m));
     vector<int>perm;
     for(int i=0;i<m;i++)
-        perm.push_back(i);
+        perm.push_back(i); // 0 , 1, 2,3,4,5 .. m-1
     for(int i=0;i<n;i++)
     {
-        a[i] = perm;
+        a[i] = perm;   // 0,1,2,3..m-1
+                        // 0,1,2,3..m-1
     }
     if(m>1)
     {
